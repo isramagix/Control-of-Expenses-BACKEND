@@ -59,7 +59,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Usuario o email ya registrado")
 
     hashed_password = get_password_hash(user.password)
-    new_user = User(username=user.username, email=user.email, password=hashed_password)
+    new_user = User(username=user.username, email=user.email, hashed_password=hashed_password)
 
     db.add(new_user)
     db.commit()
@@ -76,7 +76,7 @@ def login(form_data: UserCreate, db: Session = Depends(get_db)):
         (User.email == form_data.email) | (User.username == form_data.username)
     ).first()
 
-    if not db_user or not verify_password(form_data.password, db_user.password):
+    if not db_user or not verify_password(form_data.password, db_user.hashed_password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Credenciales inválidas")
 
     access_token = create_access_token(data={"sub": str(db_user.id)})
