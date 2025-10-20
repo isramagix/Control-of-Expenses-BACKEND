@@ -16,7 +16,7 @@ from datetime import datetime, date, timedelta
 from decimal import Decimal
 import calendar
 
-router = APIRouter(prefix="/api/reports", tags=["Reports"])
+router = APIRouter(prefix="/api/reports", tags=["📊 Reportes"])
 
 def get_db():
     db = SessionLocal()

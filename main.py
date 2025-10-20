@@ -130,47 +130,26 @@ async def internal_error_handler(request: Request, exc):
 # 🔹 Incluir todos los routers
 # ======================================================
 
-# Router de autenticación (sin prefijo adicional)
-app.include_router(
-    auth.router,
-    tags=["🔐 Autenticación"]
-)
+# Router de autenticación
+app.include_router(auth.router)
 
 # Router de usuarios
-app.include_router(
-    users.router,
-    tags=["👤 Usuarios"]
-)
+app.include_router(users.router)
 
 # Router de categorías
-app.include_router(
-    categories.router,
-    tags=["📂 Categorías"]
-)
+app.include_router(categories.router)
 
 # Router de gastos (transactions/expenses)
-app.include_router(
-    transactions.router,
-    tags=["💸 Gastos"]
-)
+app.include_router(transactions.router)
 
 # Router de presupuestos
-app.include_router(
-    budgets.router,
-    tags=["💰 Presupuestos"]
-)
+app.include_router(budgets.router)
 
 # Router de reportes y analíticas
-app.include_router(
-    reports.router,
-    tags=["📊 Reportes"]
-)
+app.include_router(reports.router)
 
 # Router de configuraciones
-app.include_router(
-    settings.router,
-    tags=["⚙️ Configuraciones"]
-)
+app.include_router(settings.router)
 
 # ======================================================
 # 🔹 Rutas principales

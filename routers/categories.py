@@ -10,7 +10,7 @@ from routers.auth import get_current_user
 from typing import List, Optional
 import uuid
 
-router = APIRouter(prefix="/api/categories", tags=["Categories"])
+router = APIRouter(prefix="/api/categories", tags=["📂 Categorías"])
 
 def get_db():
     db = SessionLocal()

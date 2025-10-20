@@ -8,7 +8,7 @@ from routers.auth import get_current_user
 from typing import Optional
 from decimal import Decimal
 
-router = APIRouter(prefix="/api/settings", tags=["Settings"])
+router = APIRouter(prefix="/api/settings", tags=["⚙️ Configuraciones"])
 
 def get_db():
     db = SessionLocal()

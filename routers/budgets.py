@@ -15,7 +15,7 @@ from datetime import datetime, date
 from decimal import Decimal
 import uuid
 
-router = APIRouter(prefix="/api/budgets", tags=["Budgets"])
+router = APIRouter(prefix="/api/budgets", tags=["💰 Presupuestos"])
 
 def get_db():
     db = SessionLocal()

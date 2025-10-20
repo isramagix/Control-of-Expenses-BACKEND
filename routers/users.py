@@ -10,7 +10,7 @@ from schemas.user import UserUpdate, UserProfile
 from routers.auth import get_current_user
 import json
 
-router = APIRouter(prefix="/api/users", tags=["Users"])
+router = APIRouter(prefix="/api/users", tags=["👤 Usuarios"])
 
 def get_db():
     db = SessionLocal()

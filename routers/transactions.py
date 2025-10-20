@@ -16,7 +16,7 @@ from decimal import Decimal
 import uuid
 import calendar
 
-router = APIRouter(prefix="/api/expenses", tags=["Expenses"])
+router = APIRouter(prefix="/api/expenses", tags=["💸 Gastos"])
 
 def get_db():
     db = SessionLocal()
