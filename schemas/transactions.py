@@ -12,6 +12,7 @@ class TransactionCreate(TransactionBase):
 class Transaction(TransactionBase):
     id: int
     date: datetime
+    user_id: int
 
     class Config:
         from_attributes = True
