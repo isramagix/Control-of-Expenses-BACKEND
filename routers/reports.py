@@ -454,7 +454,7 @@ def get_weekly_progress(
     return WeeklyProgress(
         week_start=week_start,
         week_end=week_end,
-        total_expenses=total_expenses,
+        total_expenses=total_expenses,  
         daily_breakdown=daily_breakdown,
         budget_percentage=budget_percentage,
         comparison_last_week=last_week_expenses
