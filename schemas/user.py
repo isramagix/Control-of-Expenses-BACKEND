@@ -21,6 +21,21 @@ class UserCreate(UserBase):
     password: str = Field(..., min_length=6)
 
 
+class UserLogin(BaseModel):
+    """Schema para login - solo email y contraseña"""
+    email: EmailStr = Field(..., description="Email del usuario")
+    password: str = Field(..., min_length=1, description="Contraseña del usuario")
+
+
+class LoginResponse(BaseModel):
+    """Schema para la respuesta del login"""
+    access_token: str = Field(..., description="Token de acceso JWT")
+    refresh_token: str = Field(..., description="Token de renovación")
+    token_type: str = Field(default="bearer", description="Tipo de token")
+    expires_in: int = Field(..., description="Tiempo de expiración en segundos")
+    user: dict = Field(..., description="Información básica del usuario")
+
+
 class UserUpdate(BaseModel):
     name: Optional[str] = Field(None, min_length=2, max_length=100)
     preferred_currency: Optional[str] = None

@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from database import SessionLocal
 from models.user import User
 from models.user_settings import UserSettings
-from schemas.user import UserCreate, UserResponse
+from schemas.user import UserCreate, UserResponse, UserLogin, LoginResponse
 from fastapi.security import OAuth2PasswordBearer
 from typing import Optional
 import uuid
@@ -94,8 +94,9 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
 # ========================
 # 🔹 Login
 # ========================
-@router.post("/login")
-def login(credentials: UserCreate, db: Session = Depends(get_db)):
+@router.post("/login", response_model=LoginResponse)
+def login(credentials: UserLogin, db: Session = Depends(get_db)):
+    """Login de usuario - Solo requiere email y contraseña"""
     db_user = db.query(User).filter(User.email == credentials.email).first()
 
     if not db_user or not verify_password(credentials.password, db_user.hashed_password):
@@ -119,7 +120,12 @@ def login(credentials: UserCreate, db: Session = Depends(get_db)):
         "access_token": access_token,
         "refresh_token": refresh_token,
         "token_type": "bearer",
-        "expires_in": ACCESS_TOKEN_EXPIRE_MINUTES * 60
+        "expires_in": ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        "user": {
+            "id": str(db_user.id),
+            "email": db_user.email,
+            "name": db_user.name
+        }
     }
 
 # ========================
